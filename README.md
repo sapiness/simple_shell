@@ -11,6 +11,6 @@ The Simple Shell project is a collaborative effort aimed at testing and enhancin
 ## Authors
 
 **The following individuals are co-authors on this project:**
-__[Surprise Moraba](https://github.com/sapiness)__
-__[Eveshogweyore Alle](https://github.com/eveshogweyore)__
+1. __[Surprise Moraba](https://github.com/sapiness)__
+2. __[Eveshogweyore Alle](https://github.com/eveshogweyore)__
 
