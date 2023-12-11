@@ -14,3 +14,15 @@ The Simple Shell project is a collaborative effort aimed at testing and enhancin
 1. __[Surprise Moraba](https://github.com/sapiness)__
 2. __[Eveshogweyore Alle](https://github.com/eveshogweyore)__
 
+
+## USAGE
+**To run the Simple Shell, compile the source code and execute the resulting binary.**
+
+The shell prompt will appear, ready to accept commands. Users can enter commands with various options and arguments, and the shell will execute them accordingly.
+
+### Compile
+`gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`
+
+### Run
+`./hsh`
+
