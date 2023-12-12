@@ -10,14 +10,13 @@
 char **tokenize(char *input_buf)
 {
 	int i, token_len = 0;
-	char *token = NULL;
 	char **token_mem = NULL;
+	char *token = NULL;
 
-	for (i = 0; input_buf[i]; i++)
-		if (input_buf[i] == ' ')
-			token_len++;
+	while (input_buf[0] == ' ')
+		input_buf++;
 
-	token_len += 2; /* Space for last token and NULL*/
+	token_len = loop_for(input_buf, ' ') + 1;
 
 	token_mem = malloc(token_len * sizeof(char *));
 	if (token_mem == NULL)
