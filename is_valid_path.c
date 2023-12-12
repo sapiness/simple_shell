@@ -40,21 +40,15 @@ int loop_for(char *str, char delim)
 int is_valid_path(char *command, char **path, char **env)
 {
 	int i, env_length;
-	char *env_str = NULL, *env_token = NULL;
+	char *env_str = NULL, *env_t = NULL;
 
 	if (command[0] == '/')
 	{
-		/* NOTE: *path is allocated memory that must be deallocated */
 		*path = malloc(strlen(command) + 1);
 		strcpy(*path, command);
 		if (access(*path, F_OK) == 0)
-		{
-			/*printf("File: %s EXISTS\n", *path);*/
 			return (0);
-		}
-
-		sfree_memory(*path); /* PATH DONE */
-
+		sfree_memory(*path); /* PATH FREED */
 		return (-1);
 	}
 
@@ -62,7 +56,6 @@ int is_valid_path(char *command, char **path, char **env)
 	{
 		if (env[i][0] == 'P' && env[i][3] == 'H')
 		{
-			/* env_str must be freed [DONE] */
 			env_str = malloc(_strlen(&env[i][5]) + 1);
 			strcpy(env_str, &env[i][5]);
 			break;
@@ -72,27 +65,18 @@ int is_valid_path(char *command, char **path, char **env)
 	env_length = loop_for(env_str, ':');
 	for (i = 0; i < env_length; i++)
 	{
-		/* NOTE: env_token is allocated memory that must be deallocated */
-		if (i == 0)
-			env_token = strtok(env_str, ":");
-		else
-			env_token = strtok(NULL, ":");
-
-		*path = malloc(strlen(env_token) + strlen(command) + 2);
-		strcpy(*path, env_token);
+		env_t = (i == 0) ? strtok(env_str, ":") : strtok(NULL, ":");
+		*path = malloc(strlen(env_t) + strlen(command) + 2);
+		strcpy(*path, env_t);
 		strcat(*path, "/");
 		strcat(*path, command);
-
 		if (access(*path, F_OK) == 0)
 		{
-			/*printf("File: %s EXISTS\n", *path);*/
 			sfree_memory(env_str);
 			return (0);
 		}
-
 		sfree_memory(*path);
 	}
-
 	sfree_memory(env_str);
 	return (-1);
 }
