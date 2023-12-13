@@ -29,7 +29,6 @@ int main(int argc, char *argv[], char *envp[])
 		handle_error(bytes_read);
 
 		cc_input_exit(input_buffer, bytes_read);
-
 		tokens_count = loop_for(input_buffer, ' ');
 		if (tokens_count == 0)
 			continue;
@@ -47,9 +46,7 @@ int main(int argc, char *argv[], char *envp[])
 		}
 		else
 			perror(argv[0]);
-
 		dfree_memory(tokens, tokens_count + 1);
 	}
-
 	return (0);
 }
