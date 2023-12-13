@@ -31,6 +31,8 @@ int main(int argc, char *argv[], char *envp[])
 		cc_input_exit(input_buffer, bytes_read);
 
 		tokens_count = loop_for(input_buffer, ' ');
+		if (tokens_count == 0)
+			continue;
 		tokens = tokenize(input_buffer);
 
 		if (!is_valid_path(tokens[0], &path, envp))

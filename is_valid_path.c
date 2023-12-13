@@ -25,6 +25,9 @@ int loop_for(char *str, char delim)
 		}
 	}
 
+	if (i == 0)
+		return (0);
+
 	return (count + 1);
 }
 
