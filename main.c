@@ -10,28 +10,27 @@
  */
 int main(int argc, char *argv[], char *envp[])
 {
-	ssize_t bytes_read, bytes_written;
-	char prompt[] = "$ ";
+	ssize_t bytes_read = 0;
 	char **tokens, *path = NULL, *line;
 	int tokens_count, cmd_from;
-	size_t n;
+	size_t n = 0;
 	pid_t child_p;
 
 	cmd_from = isatty(STDIN_FILENO);
 	while (1)
 	{
 		if (cmd_from == 1)
-		{
-			bytes_written = write(STDOUT_FILENO, prompt, _strlen(prompt));
-			handle_error(bytes_written, argv[argc - 1]);
-		}
+			cprompt(argv[argc - 1]);
 		line = NULL;
 		bytes_read = getline(&line, &n, stdin);
-		/*handle_error(bytes_read, argv[argc - 1]);*/
+		if (feof(stdin))
+		{
+			sfree_memory(line);
+			break; }
+		if (bytes_read == -1)
+			continue;
 		cc_input_exit(line, bytes_read);
 		tokens_count = loop_for(line, ' ');
-		if (tokens_count == 0)
-			continue;
 		tokens = tokenize(line);
 		if (!is_valid_path(tokens[0], &path, envp))
 		{
