@@ -26,7 +26,10 @@ int loop_for(char *str, char delim)
 	}
 
 	if (i == 0)
+	{
+		sfree_memory(str);
 		return (0);
+	}
 
 	return (count + 1);
 }
