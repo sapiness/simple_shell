@@ -11,10 +11,10 @@
 int main(int argc, char *argv[], char *envp[])
 {
 	ssize_t bytes_read, bytes_written;
-	char input_buffer[1024] = {0};
 	char prompt[] = "$ ";
-	char **tokens, *path = NULL;
+	char **tokens, *path = NULL, *line;
 	int tokens_count, cmd_from;
+	size_t n;
 	pid_t child_p;
 
 	cmd_from = isatty(STDIN_FILENO);
@@ -25,15 +25,14 @@ int main(int argc, char *argv[], char *envp[])
 			bytes_written = write(STDOUT_FILENO, prompt, _strlen(prompt));
 			handle_error(bytes_written, argv[argc - 1]);
 		}
-		bytes_read = read(STDIN_FILENO, input_buffer, 1024);
-		handle_error(bytes_read, argv[argc - 1]);
-
-		cc_input_exit(input_buffer, bytes_read);
-		tokens_count = loop_for(input_buffer, ' ');
+		line = NULL;
+		bytes_read = getline(&line, &n, stdin);
+		/*handle_error(bytes_read, argv[argc - 1]);*/
+		cc_input_exit(line, bytes_read);
+		tokens_count = loop_for(line, ' ');
 		if (tokens_count == 0)
 			continue;
-		tokens = tokenize(input_buffer);
-
+		tokens = tokenize(line);
 		if (!is_valid_path(tokens[0], &path, envp))
 		{
 			child_p = fork();
@@ -46,6 +45,7 @@ int main(int argc, char *argv[], char *envp[])
 		}
 		else
 			perror(argv[0]);
+		sfree_memory(line);
 		dfree_memory(tokens, tokens_count + 1);
 		fflush(stdout);
 	}

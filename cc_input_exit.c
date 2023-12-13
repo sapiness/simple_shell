@@ -22,7 +22,7 @@ void cc_input_exit(char *i_b, ssize_t b_r)
 	for (i = i - 2; i_b[i] == ' '; i--)
 		i_b[i] = '\0'; /* Remove trailing whitespaces */
 
-	if (strcmp(i_b, "exit") == 0 || b_r == 0)
+	if (strcmp(i_b, "exit") == 0 || b_r == -1)
 		exit(0);
 
 	/*if (b_r == 0)
