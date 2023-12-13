@@ -27,10 +27,4 @@ void cc_input_exit(char *i_b, ssize_t b_r)
 		sfree_memory(i_b);
 		exit(0);
 	}
-
-	/*if (b_r == 0)
-	{
-		write(STDOUT_FILENO, "\n", 1);
-		exit(0);
-	}*/
 }
