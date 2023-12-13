@@ -39,13 +39,13 @@ int main(int argc, char *argv[], char *envp[])
 			if (child_p == 0)
 				if (execve(path, tokens, envp) == -1)
 					perror(argv[0]);
-			if (child_p > 0)
-				wait(NULL);
+			
+			wait(NULL);
+			sfree_memory(path);
 		}
 		else
 			perror(argv[0]);
 
-		sfree_memory(path);
 		dfree_memory(tokens, tokens_count + 1);
 	}
 }

@@ -51,7 +51,6 @@ int is_valid_path(char *command, char **path, char **env)
 		sfree_memory(*path); /* PATH FREED */
 		return (-1);
 	}
-
 	for (i = 0; env[i]; i++)
 	{
 		if (env[i][0] == 'P' && env[i][3] == 'H')
@@ -77,6 +76,7 @@ int is_valid_path(char *command, char **path, char **env)
 		}
 		sfree_memory(*path);
 	}
+	/**path = NULL;*/
 	sfree_memory(env_str);
 	return (-1);
 }
