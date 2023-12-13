@@ -50,4 +50,6 @@ int main(int argc, char *argv[], char *envp[])
 
 		dfree_memory(tokens, tokens_count + 1);
 	}
+
+	return (0);
 }
