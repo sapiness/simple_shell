@@ -13,7 +13,7 @@ int main(int argc, char *argv[], char *envp[])
 	ssize_t bytes_read;
 	ssize_t bytes_written;
 	char input_buffer[1024] = {0};
-	char prompt[] = "($) ";
+	char prompt[] = "$ ";
 	char **tokens;
 	int tokens_count;
 	char *path = NULL;
