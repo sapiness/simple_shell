@@ -39,7 +39,7 @@ int main(int argc, char *argv[], char *envp[])
 			if (child_p == 0)
 				if (execve(path, tokens, envp) == -1)
 					perror(argv[0]);
-			
+
 			wait(NULL);
 			sfree_memory(path);
 		}
