@@ -6,10 +6,10 @@
  *
  * Return: Nothing.
  */
-void handle_error(int err_value)
+void handle_error(int err_value, char *filename)
 {
 	if (err_value == -1)
 	{
-		perror("Error");
+		perror(filename);
 	}
 }
