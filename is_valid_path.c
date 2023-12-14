@@ -48,7 +48,7 @@ int is_valid_path(char *command, char **path, char **env)
 	int i, env_length;
 	char *env_str = NULL, *env_t = NULL;
 
-	if (command[0] == '/')
+	if (command[0] == '/' || command[0] == '.')
 	{
 		*path = malloc(strlen(command) + 1);
 		strcpy(*path, command);
