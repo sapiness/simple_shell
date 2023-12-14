@@ -27,10 +27,11 @@ int main(int argc, char *argv[], char *envp[])
 		{
 			sfree_memory(line);
 			break; }
-		if (bytes_read == -1)
-			continue;
-		cc_input_exit(line, bytes_read);
-		tokens_count = loop_for(line, ' ');
+		tokens_count = cc_input_exit(line, bytes_read);
+		/*tokens_count = loop_for(line, ' ');*/
+		if (tokens_count == 0)
+		{	sfree_memory(line);
+			continue; }
 		tokens = tokenize(line);
 		if (!is_valid_path(tokens[0], &path, envp))
 		{

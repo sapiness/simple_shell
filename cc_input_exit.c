@@ -6,25 +6,34 @@
  * @i_b: The buffer that holds the input from user.
  * @b_r: The length of the input from user.
  *
- * Return: Nothing.
+ * Return: On success, true length of line.
  */
-void cc_input_exit(char *i_b, ssize_t b_r)
+int cc_input_exit(char *line, ssize_t b_r)
 {
-	int i = 0;
+	int i = 0, token_length = 0;
+	char *line_token;
 
-	while (i_b[0] == ' ')
-		i_b++; /* Remove leading white spaces */
+	while (line[0] == ' ')
+		line = &(line[1]); /* Remove leading white spaces */
 
-	for (i = 0; i_b[i]; i++)
-		if (i_b[i] == '\n')
-			i_b[i] = '\0';
+	for (i = 0; line[i]; i++)
+		if (line[i] == '\n')
+			line[i] = '\0';
 
-	for (i = i - 2; i_b[i] == ' '; i--)
-		i_b[i] = '\0'; /* Remove trailing whitespaces */
+	for (i = _strlen(line); line[i] == ' '; i--)
+		line[i] = '\0'; /* Remove trailing whitespaces */
 
-	if (strcmp(i_b, "exit") == 0 || b_r == -1)
+	if (strcmp(line, "exit") == 0 || b_r == -1)
 	{
-		sfree_memory(i_b);
+		sfree_memory(line);
 		exit(0);
 	}
+
+	line_token = _strtok(line, " ");
+	while (line_token != NULL)
+	{
+		token_length++;
+		line_token = _strtok(NULL, " ");
+	}
+	return (token_length);
 }
