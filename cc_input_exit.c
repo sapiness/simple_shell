@@ -3,7 +3,7 @@
 /**
  * cc_input_exit - Removes '\n' from input string and
  *                 checks if the input is "exit" or "EOF".
- * @i_b: The buffer that holds the input from user.
+ * @line: The buffer that holds the input from user.
  * @b_r: The length of the input from user.
  *
  * Return: On success, true length of line.
