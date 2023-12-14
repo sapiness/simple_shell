@@ -11,7 +11,7 @@
 int cc_input_exit(char *line, ssize_t b_r)
 {
 	int i = 0, token_length = 0;
-	char *line_token;
+	char *line_token, *line_copy;
 
 	while (line[0] == ' ')
 		line = &(line[1]); /* Remove leading white spaces */
@@ -29,11 +29,13 @@ int cc_input_exit(char *line, ssize_t b_r)
 		exit(0);
 	}
 
-	line_token = _strtok(line, " ");
+	line_copy = strdup(line);
+	line_token = _strtok(line_copy, " ");
 	while (line_token != NULL)
 	{
 		token_length++;
 		line_token = _strtok(NULL, " ");
 	}
+	sfree_memory(line_copy);
 	return (token_length);
 }
