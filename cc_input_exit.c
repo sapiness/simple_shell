@@ -27,6 +27,8 @@ int cc_input_exit(char *line, ssize_t b_r)
 	if (strcmp(line, "exit") == 0 || b_r == -1)
 	{
 		sfree_memory(line);
+		if (errno == ENOTTY)
+			exit(2);
 		exit(0);
 	}
 

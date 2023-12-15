@@ -28,7 +28,6 @@ int main(int argc, char *argv[], char *envp[])
 			sfree_memory(line);
 			break; }
 		tokens_count = cc_input_exit(line, bytes_read);
-		/*tokens_count = loop_for(line, ' ');*/
 		if (tokens_count == 0)
 		{	sfree_memory(line);
 			continue; }
