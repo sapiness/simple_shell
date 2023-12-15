@@ -20,7 +20,7 @@ int cc_input_exit(char *line, ssize_t b_r)
 		if (line[i] == '\n')
 			line[i] = '\0';
 
-	for (i = _strlen(line); line[i] == ' '; i--)
+	for (i = _strlen(line) - 1; line[i] == ' '; i--)
 		line[i] = '\0'; /* Remove trailing whitespaces */
 
 	if (strcmp(line, "exit") == 0 || b_r == -1)
