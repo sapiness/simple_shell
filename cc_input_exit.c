@@ -20,14 +20,13 @@ int cc_input_exit(char *line, ssize_t b_r)
 		if (line[i] == '\n')
 			line[i] = '\0';
 
-	for (i = _strlen(line) - 1; line[i] == ' '; i--)
-		line[i] = '\0'; /* Remove trailing whitespaces */
+	if (_strlen(line) > 0)
+		for (i = _strlen(line) - 1; line[i] == ' '; i--)
+			line[i] = '\0'; /* Remove trailing whitespaces */
 
 	if (strcmp(line, "exit") == 0 || b_r == -1)
 	{
 		sfree_memory(line);
-		if (isatty(STDIN_FILENO) == 0)
-			exit(2);
 		exit(0);
 	}
 
