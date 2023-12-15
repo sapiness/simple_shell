@@ -11,12 +11,13 @@
 #include <wait.h>
 
 char *_strtok(char *str, const char *delim);
-void handle_error(int err_value);
+void handle_error(int err_value, char *filename);
 int _strlen(char *str);
 void cc_input_exit(char *i_b, ssize_t b_r);
 int loop_for(char *str, char delim);
 char **tokenize(char *input_buf);
 int is_valid_path(char *command, char **path, char **env);
+void cprompt(char *filename);
 void sfree_memory(char *mem_address);
 void dfree_memory(char **mem_address, int size);
 
